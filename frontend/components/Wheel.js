@@ -4,32 +4,19 @@ import { moveClockwise, moveCounterClockwise } from '../state/action-creators'
 
 function Wheel(props) {
 
-  const handleMoveClockwise = () => {
-    let newPos
-    if (props.wheel === 5){
-      newPos = 0
-    }
-    else newPos = props.wheel + 1
-    props.moveClockwise(newPos)
-  }
-  const handleMoveCounterClockwise = () => {
-    props.moveCounterClockwise(2)
-    console.log(props.wheel)
-  }
-
   return (
     <div id="wrapper">
       <div id="wheel">
-        <div className="cog active" style={{ "--i": 0 }}>B</div>
-        <div className="cog" style={{ "--i": 1 }}></div>
-        <div className="cog" style={{ "--i": 2 }}></div>
-        <div className="cog" style={{ "--i": 3 }}></div>
-        <div className="cog" style={{ "--i": 4 }}></div>
-        <div className="cog" style={{ "--i": 5 }}></div>{/* --i is a custom CSS property, no need to touch that nor the style object */}
+        <div className={`cog ${props.wheel===0 ? 'active' : ''}`} style={{ "--i": 0 }}>{props.wheel===0 && 'B'}</div>
+        <div className={`cog ${props.wheel===1 ? 'active' : ''}`} style={{ "--i": 1 }}>{props.wheel===1 && 'B'}</div>
+        <div className={`cog ${props.wheel===2 ? 'active' : ''}`} style={{ "--i": 2 }}>{props.wheel===2 && 'B'}</div>
+        <div className={`cog ${props.wheel===3 ? 'active' : ''}`} style={{ "--i": 3 }}>{props.wheel===3 && 'B'}</div>
+        <div className={`cog ${props.wheel===4 ? 'active' : ''}`} style={{ "--i": 4 }}>{props.wheel===4 && 'B'}</div>
+        <div className={`cog ${props.wheel===5 ? 'active' : ''}`} style={{ "--i": 5 }}>{props.wheel===5 && 'B'}</div>{/* --i is a custom CSS property, no need to touch that nor the style object */}
       </div>
       <div id="keypad">
-        <button id="counterClockwiseBtn" onClick={handleMoveCounterClockwise}>Counter clockwise</button>
-        <button id="clockwiseBtn" onClick={handleMoveClockwise} >Clockwise</button>
+        <button id="counterClockwiseBtn" onClick={props.moveClockwise}>Counter clockwise</button>
+        <button id="clockwiseBtn" onClick={props.moveCounterClockwise} >Clockwise</button>
       </div>
     </div>
   )
